@@ -1,0 +1,29 @@
+.quote-box {
+    background-color: #e3f2fd;
+    padding: 50px;
+    margin: 50px auto;
+    width: 400px;
+    height: auto;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px  rgba(0,0,0,0.1);
+    font-size: 30px;     /* Bigger text */
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  button {
+    margin-top: 15px;
+    padding: 8px 15px;
+    border: none;
+    background-color: #2196f3;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;  
+  }
+  
+  button:hover {
+    background-color: #1976d2;
+  }
+  
