@@ -90,3 +90,11 @@ df[mask3].to_csv(f'KONDORGA_4035A_{date_base}.csv', index=False)
 # Rows not matching any group
 df[~(mask1 | mask2 | mask3)].to_csv(f'KONDORTP_4835_{date_base}.csv', index=False)
 
+
+import os
+
+if os.path.exists(input_file):
+    print("CSV file found.")
+else:
+    print("CSV file NOT found. Check the file name or path.")
+
