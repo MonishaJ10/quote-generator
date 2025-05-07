@@ -57,3 +57,35 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+
+
+import pandas as pd
+from datetime import datetime
+
+# Get today's date
+date_base = datetime.today().strftime('%Y%m%d')
+
+# Input CSV file path
+input_file = "kondorfx_4035.csv"  # Make sure this matches your actual CSV filename
+
+# Define keyword groups
+group_1_keywords = ['PF-AF01', 'PF-AN19', 'PF-002011', 'PF-NOR18']
+group_2_keywords = ['ALM-LO', 'TREAS-DU', 'TREAS-BU', 'TREAS-LO', 'BNPPFCTLAY', 'GRS-PA', 'SBIRD-PAR']
+group_3_keywords = ['GAP', 'DF', 'BNPPCB', 'BNPPSCF', 'POSCENT-PA', 'TREASUR-PA']
+
+# Read the CSV
+df = pd.read_csv(input_file)
+
+# Create masks
+mask1 = df['89'].isin(group_1_keywords)
+mask2 = df['89'].isin(group_2_keywords)
+mask3 = df['89'].isin(group_3_keywords)
+
+# Filter and save
+df[mask1].to_csv(f'KONDORGA_4035_{date_base}.csv', index=False)
+df[mask2].to_csv(f'KONDORBN_4835_{date_base}.csv', index=False)
+df[mask3].to_csv(f'KONDORGA_4035A_{date_base}.csv', index=False)
+
+# Rows not matching any group
+df[~(mask1 | mask2 | mask3)].to_csv(f'KONDORTP_4835_{date_base}.csv', index=False)
