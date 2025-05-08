@@ -117,3 +117,17 @@ filtered_df.to_csv(output_file, index=False)
 print(f"Filtered data saved to: {output_file}")
 
 
+
+
+import pandas as pd
+
+# Load the CSV file
+df = pd.read_csv("converted_data1.csv", dtype=str)  # Read all columns as strings
+
+# Drop rows where column '820' has 'ROBSIN' or 'BAIUAMDROB'
+filtered_df = df[~df['820'].isin(['ROBSIN', 'BAIUAMDROB'])]
+
+# Save the filtered DataFrame to a new CSV file
+filtered_df.to_csv("converted_data1_filtered.csv", index=False)
+
+print("Filtered file saved as 'converted_data1_filtered.csv'")
