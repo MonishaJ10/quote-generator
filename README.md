@@ -119,15 +119,31 @@ print(f"Filtered data saved to: {output_file}")
 
 
 
+
+
+
+
+
 import pandas as pd
+from datetime import datetime
 
-# Load the CSV file
-df = pd.read_csv("converted_data1.csv", dtype=str)  # Read all columns as strings
+# Get today's date
+date_base = datetime.today().strftime('%Y%m%d')
 
-# Drop rows where column '820' has 'ROBSIN' or 'BAIUAMDROB'
-filtered_df = df[~df['820'].isin(['ROBSIN', 'BAIUAMDROB'])]
+# Full path to your input CSV file
+input_file = "C:/Users/h59606/PycharmProjects/Exclusion/converted_data1.csv"
 
-# Save the filtered DataFrame to a new CSV file
-filtered_df.to_csv("converted_data1_filtered.csv", index=False)
+# Keywords to exclude
+exclude_keywords = ['ROBSIN', 'BAIUAMDROB']
 
-print("Filtered file saved as 'converted_data1_filtered.csv'")
+# Read the CSV file (treat all data as string to avoid dtype issues)
+df = pd.read_csv(input_file, dtype=str)
+
+# Filter out rows where column '820' contains the excluded values
+filtered_df = df[~df['820'].isin(exclude_keywords)]
+
+# Save the filtered data to a new CSV file in the same directory
+output_file = f"C:/Users/h59606/PycharmProjects/Exclusion/converted_data1_filtered_{date_base}.csv"
+filtered_df.to_csv(output_file, index=False)
+
+print(f"Filtered CSV saved at: {output_file}")
