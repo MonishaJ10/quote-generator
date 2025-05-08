@@ -98,3 +98,21 @@ if os.path.exists(input_file):
 else:
     print("CSV file NOT found. Check the file name or path.")
 
+
+removing ROBSIN and BAIUAMDROB
+
+import pandas as pd
+
+# Load Excel file
+input_file = 'your_file.xlsx'  # Replace with your actual file name
+df = pd.read_excel(input_file)
+
+# Filter out rows where column '820' is 'ROBSIN' or 'BAIUAMDROB'
+filtered_df = df[~df['820'].isin(['ROBSIN', 'BAIUAMDROB'])]
+
+# Save to a new CSV file
+output_file = 'filtered_output.csv'
+filtered_df.to_csv(output_file, index=False)
+
+print(f"Filtered data saved to: {output_file}")
+
